@@ -1,0 +1,8 @@
+config("boost_config") {
+  include_dirs = [ "." ]
+  defines = [ "BOOST_ALL_NO_LIB" ]
+}
+
+group("boost") {
+  public_configs = [ ":boost_config" ]
+}
