@@ -1,3 +1,10 @@
+config("test_config") {
+  cflags_cc = []
+  if (is_win && is_clang) {
+    cflags_cc += [ "-Wno-microsoft-enum-value" ]
+  }
+}
+
 source_set("prg_exec_monitor") {
   sources = [
     "src/cpp_main.cpp",
@@ -5,7 +12,10 @@ source_set("prg_exec_monitor") {
     "src/execution_monitor.cpp",
   ]
 
-  public_configs = [ "../..:boost_config" ]
+  public_configs = [
+    ":test_config",
+    "../..:boost_config",
+  ]
 
   deps = [
     "../timer",
@@ -35,7 +45,10 @@ source_set("test_exec_monitor") {
     "src/xml_report_formatter.cpp",
   ]
 
-  public_configs = [ "../..:boost_config" ]
+  public_configs = [
+    ":test_config",
+    "../..:boost_config",
+  ]
 
   deps = [
     "../timer",
@@ -64,7 +77,10 @@ source_set("unit_test_framework") {
     "src/xml_report_formatter.cpp",
   ]
 
-  public_configs = [ "../..:boost_config" ]
+  public_configs = [
+    ":test_config",
+    "../..:boost_config",
+  ]
 
   deps = [
     "../timer",
