@@ -21,4 +21,8 @@ source_set("asio") {
     ":asio_config",
     "../..:boost_config",
   ]
+
+  public_deps = [
+    "../system"
+  ]
 }
